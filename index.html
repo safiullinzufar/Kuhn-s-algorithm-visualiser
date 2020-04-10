@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.parsers.json.min.js"></script>-->
+    <script src="sigma/src/sigma.core.js"></script>
+    <script src="sigma/src/conrad.js"></script>
+    <script src="sigma/src/utils/sigma.utils.js"></script>
+    <script src="sigma/src/utils/sigma.polyfills.js"></script>
+    <script src="sigma/src/sigma.settings.js"></script>
+    <script src="sigma/src/classes/sigma.classes.dispatcher.js"></script>
+    <script src="sigma/src/classes/sigma.classes.configurable.js"></script>
+    <script src="sigma/src/classes/sigma.classes.graph.js"></script>
+    <script src="sigma/src/classes/sigma.classes.camera.js"></script>
+    <script src="sigma/src/classes/sigma.classes.quad.js"></script>
+    <script src="sigma/src/classes/sigma.classes.edgequad.js"></script>
+    <script src="sigma/src/captors/sigma.captors.mouse.js"></script>
+    <script src="sigma/src/captors/sigma.captors.touch.js"></script>
+    <script src="sigma/src/renderers/sigma.renderers.canvas.js"></script>
+    <script src="sigma/src/renderers/sigma.renderers.webgl.js"></script>
+    <script src="sigma/src/renderers/sigma.renderers.svg.js"></script>
+    <script src="sigma/src/renderers/sigma.renderers.def.js"></script>
+    <script src="sigma/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+    <script src="sigma/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+    <script src="sigma/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+    <script src="sigma/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+    <script src="sigma/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+    <script src="sigma/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.utils.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.edges.def.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.labels.def.js"></script>
+    <script src="sigma/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+    <script src="sigma/src/middlewares/sigma.middlewares.rescale.js"></script>
+    <script src="sigma/src/middlewares/sigma.middlewares.copy.js"></script>
+    <script src="sigma/src/misc/sigma.misc.animation.js"></script>
+    <script src="sigma/src/misc/sigma.misc.bindEvents.js"></script>
+    <script src="sigma/src/misc/sigma.misc.bindDOMEvents.js"></script>
+    <script src="sigma/src/misc/sigma.misc.drawHovers.js"></script>
+    <style type="text/css">
+        #container {
+            max-width: border-box;
+            height: 400px;
+            /*margin: auto;*/
+            margin-top: 15px;
+        }
+    </style>
+ </head>
+    <body>
+        <div id="app">
+        <h1>Kuhn's Algorithm</h1>
+            <div id="input-section">
+                    <p style="margin-left: 7px; margin-right: 5px">Введите кол-во вершин в 1ой, 2-ой доле и кол-во рёбер (m).
+                        В следующих m строках введите рёбра.</p>
+                    <p></p>
+                    <textarea style="margin-left: 7px" id="input" name="input" cols="25" rows="10" style="text-indent:-50px;"></textarea>
+<!--                    <input type="button" value="confirm" onClick="clear(), read(), get_data()">-->
+                    <button style="margin-left: 7px;margin-bottom: 4px; font-size: 14px; border-color: #14191C" id="MyButton" class="btn btn-warning" onclick="refresh_graph(),refresh_messages_and_table(),read(), get_data(),createTable()">Confirm</button>
+                    <button style="float:right; margin-right: 10%;margin-bottom: 4px; font-size: 14px; border-color: #14191C" id="ButtonExample" class="btn btn-warning" onclick="refresh_graph(),refresh_messages_and_table(),fill_by_example(),get_data(),createTable()">Пример</button>
+            </div>
+
+            <div id="visual-section">
+                <div id="container"></div>
+                <button style="float:right; font-size: 14px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonNext" class="btn btn-warning" onclick="nextStep()">Вперед</button>
+                <button style="float:right; font-size: 14px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonPrev" class="btn btn-warning" onclick="prevStep()">Назад</button>
+            </div>
+            <div id="explanation-section">
+                <div id="msg-section">
+                    <p id="code" style="margin-left: 5px; margin-right: 3px"></p>
+                </div>
+                <div id="mt-section">
+                </div>
+            </div>
+        </div>
+        <script src="./js/main.js"></script>
+        <script src="./js/algorithm.js"></script>
+    </body>
+</html>
