@@ -72,15 +72,16 @@
                     <p></p>
                     <textarea style="margin-left: 7px" id="input" name="input" cols="25" rows="10" style="text-indent:-50px;"></textarea>
 <!--                    <input type="button" value="confirm" onClick="clear(), read(), get_data()">-->
-                    <button style="margin-left: 7px;margin-bottom: 4px; font-size: 14px; border-color: #14191C" id="MyButton" class="btn btn-warning" onclick="refresh_graph(),refresh_messages_and_table(),read(), get_data(),createTable()">Confirm</button>
+                    <button style="margin-left: 7px;margin-bottom: 4px; font-size: 14px; border-color: #14191C" id="MyButton" class="btn btn-warning" onclick="refresh_graph(),refresh_messages_and_table(),read(), get_data(),createTable()">Показать</button>
                     <button style="float:right; margin-right: 10%;margin-bottom: 4px; font-size: 14px; border-color: #14191C" id="ButtonExample" class="btn btn-warning" onclick="refresh_graph(),refresh_messages_and_table(),fill_by_example(),get_data(),createTable()">Пример</button>
             </div>
 
             <div id="visual-section">
                 <div id="container"></div>
-                <button style="float:right; font-size: 14px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonNext" class="btn btn-warning" onclick="nextStep()">Вперед</button>
-                <button style="float:right; font-size: 14px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonPrev" class="btn btn-warning" onclick="prevStep()">Назад</button>
-            </div>
+                <button style="float:right; font-size: 13px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonStart" class="btn btn-warning" onclick="toStart()">В начало</button>
+                <button style="float:right; font-size: 13px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonNext" class="btn btn-warning" onclick="nextStep()">Вперед</button>
+                <button style="float:right; font-size: 13px; margin-right: 5px; margin-bottom: 5px; border-color: #14191C" id="ButtonPrev" class="btn btn-warning" onclick="prevStep()">Назад</button>
+                </div>
             <div id="explanation-section">
                 <div id="msg-section">
                     <p id="code" style="margin-left: 5px; margin-right: 3px"></p>
