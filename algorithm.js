@@ -133,6 +133,11 @@ function show(index) {
     createTable(states.color[index][0], states.color[index][1]);
 }
 
+function toStart() {
+    ind = 0;
+    show(ind);
+}
+
 function nextStep() {
     if (ind != states.data.length) {
         show(ind);
